@@ -90,15 +90,35 @@ x.append(np.mean(scores))
 
 
 #Train model
+X_train=np.transpose(X_train)
+X_test=np.transpose(X_test)
 X_train2=[]
 X_test2=[]
 #clf = MLPClassifier(hidden_layer_sizes=(640,640,640),activation="tanh" ,random_state=1, max_iter=200000).fit(reduced_dim, y_train)
+'''
 for i in range(len(X_train)):
     X_train2.append(X_train[i][:6])
 for i in range(len(X_test)):
     X_test2.append(X_test[i][:6])
-
-clf = MLPClassifier(hidden_layer_sizes=(640,640,640),activation="relu" ,random_state=1, max_iter=200000).fit(X_train2, y_train)
+'''
+acc=[0.8107255520504731, 0.6167192429022083, 0.88801261829653, 0.5457413249211357, 0.8911671924290221, 0.6719242902208202, 0.6324921135646687, 0.7665615141955836, 0.7066246056782335, 0.7413249211356467, 0.6482649842271293, 0.9574132492113565, 0.5488958990536278, 0.5362776025236593, 0.6198738170347003, 0.637223974763407, 0.6293375394321766, 0.6309148264984227, 0.5189274447949527]
+'''
+for i in range(len(X_train)):
+    X_train2=X_train[i]
+    X_test2=X_test[i]
+    clf = MLPClassifier(hidden_layer_sizes=(640,640,640),activation="relu" ,random_state=1, max_iter=200000).fit(np.transpose([X_train2]), y_train)
+    c=clf.score(np.transpose([X_test2]), y_test)
+    acc.append(c)
+    print(c)
+print(acc)
+'''
+fig,ax=plt.subplots()
+ax.bar(fields[:19],acc)
+ax.set_title("Results per feature")
+#ax.xlabel("Feature")
+#ax.ylabel("Accuracy")
+plt.setp(ax.get_xticklabels(), rotation=45, ha="right",rotation_mode="anchor")
+plt.show()
 
 #Test
 '''
