@@ -31,6 +31,7 @@ ggplot(pca_df, aes(x = pc1, y = pc2, color = label)) +
 ggsave("R_Graphs/pca_results.png")
 
 
+# boxplot for each variable for both male and female labels. 
 col_names <- names(my_data)
 # Create a list of plots for each label
 plot_list <- list()
