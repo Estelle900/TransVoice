@@ -2,7 +2,7 @@ library(tuneR)
 library(seewave)
 
 # Set the directory path where the WAV files are located
-dir_path <- "/clips"
+dir_path <- "\\clips"
 
 # Get a list of all WAV files in the directory
 wav_files <- list.files(dir_path, pattern = "\\.wav$", full.names = TRUE)
