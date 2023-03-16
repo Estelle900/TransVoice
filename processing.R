@@ -11,7 +11,7 @@ if (!dir.exists("R_Graphs")) {
   dir.create("R_Graphs")
 }
 
-# Example 1: Calculate the mean of each feature by label
+# means
 means_by_label <- my_data %>%
   group_by(label) %>%
   summarize_all(mean)
@@ -29,6 +29,7 @@ ggplot(means_long, aes(x = label, y = mean, fill = feature)) +
 ggsave("R_Graphs/means_by_label_each_feature.png")
 
 
+# PCA
 # Perform PCA
 pca_result <- prcomp(my_data[,1:20], scale = TRUE)
 
@@ -44,12 +45,3 @@ ggplot(pca_df, aes(x = pc1, y = pc2, color = label)) +
   geom_point() +
   labs(title = "PCA Results", x = "Principal Component 1", y = "Principal Component 2")
 ggsave("R_Graphs/pca_results.png")
-
-
-
-# Example 3: Create a scatter plot matrix
-ggplot(my_data, aes(x = sd, y = Q25)) +
-  geom_point() +
-  facet_grid(~ label) +
-  labs(title = "Scatter Plot Matrix", x = "Standard Deviation", y = "First Quartile")
-ggsave("R_Graphs/scatter_plot_matrix.png")
