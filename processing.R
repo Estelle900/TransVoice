@@ -31,10 +31,6 @@ ggplot(pca_df, aes(x = pc1, y = pc2, color = label)) +
 ggsave("R_Graphs/pca_results.png")
 
 
-
-# Load the data from the CSV file
-my_data <- read.csv("archive/voice.csv")
-
 col_names <- names(my_data)
 # Create a list of plots for each label
 plot_list <- list()
@@ -54,6 +50,6 @@ for (col_name in col_names) {
 grid_arranged <- grid.arrange(grobs = plot_list, ncol = 5)
 
 # Save the grid as a PNG file
-ggsave("grid_arranged.png", plot = grid_arranged)
+ggsave("Testing Output/grid_arranged.png", plot = grid_arranged)
 
 
